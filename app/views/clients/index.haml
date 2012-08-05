@@ -1,0 +1,30 @@
+%h1 Clients
+%a{ :href => new_client_path }
+  %i.icon-plus
+  New Client
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @clients.each do |client|
+      %tr
+        %td= link_to client.name, client
+        %td
+          .btn-group.pull-right
+            %a.btn.dropdown-toggle{ :"data-toggle" => "dropdown",  :href => "#" }
+              Actions
+              %span.caret
+            %ul.dropdown-menu
+              %li
+                %a{ :href => edit_client_path(client) }
+                  %i.icon-pencil
+                  Edit
+              %li.divider
+              %li
+                = link_to 'Delete', client, :confirm => 'Are you sure?', :method => :delete, :html => "icon-trash"
+

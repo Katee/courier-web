@@ -1,0 +1,18 @@
+%h1 Jobs
+%a{ :href => new_job_path }
+  %i.icon-plus
+  New Job
+
+%table.table.table-striped
+  %thead
+    %tr
+      %td Client
+  %tbody
+    - @jobs.each do |job|
+      %tr
+        %td= job.client.name
+        %td
+          = link_to 'Show', job
+          = link_to 'Edit', edit_job_path(job)
+          = link_to 'Destroy', job, :confirm => 'Are you sure?', :method => :delete
+

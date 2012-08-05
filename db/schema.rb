@@ -13,6 +13,59 @@
 
 ActiveRecord::Schema.define(:version => 20120803221924) do
 
+  create_table "clients", :force => true do |t|
+    t.string   "name"
+    t.string   "notes"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "drops", :force => true do |t|
+    t.datetime "authorized_on"
+    t.string   "authorized_by"
+    t.integer  "job_id"
+    t.integer  "location_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "jobs", :force => true do |t|
+    t.integer  "client_id"
+    t.string   "notes"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "location_updates", :force => true do |t|
+    t.integer  "courier_id"
+    t.decimal  "lat"
+    t.decimal  "lng"
+    t.datetime "at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "location_updates", ["courier_id"], :name => "index_location_updates_on_courier_id"
+
+  create_table "locations", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "postal"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
 

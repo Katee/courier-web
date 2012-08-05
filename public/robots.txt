@@ -1,0 +1,3 @@
+# Still in development, ban all spiders
+User-Agent: *
+Disallow: /

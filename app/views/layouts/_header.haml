@@ -1,0 +1,28 @@
+%header.navbar.navbar-fixed-top
+  %nav.navbar-inner
+    .container
+      = link_to "Courier", root_path, :class => 'brand'
+      - if user_signed_in?
+        %ul.nav
+          %li= link_to "Jobs", jobs_path
+          %li= link_to "Clients", clients_path
+
+      %ul.nav.pull-right
+        - if user_signed_in?
+          - if current_user.has_role? :admin
+            %li
+              = link_to('Admin', users_path)
+          %li.dropdown
+            %a{ :href => "#", :"data-toggle" => "dropdown" }
+              Account
+              %i.caret
+            %ul.dropdown-menu
+              %li
+                = link_to('Settings', edit_user_registration_path)
+              %li
+                = link_to('Logout', destroy_user_session_path, :method=>'delete')
+        - else
+          %li
+            = link_to('Sign up', new_user_registration_path)
+          %li
+            = link_to('Login', new_user_session_path)

@@ -30,8 +30,9 @@ ActiveRecord::Schema.define(:version => 20120803221924) do
   end
 
   create_table "jobs", :force => true do |t|
-    t.integer  "client_id"
     t.string   "notes"
+    t.integer  "user_id"
+    t.integer  "client_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

@@ -1,11 +1,7 @@
 class Job < ActiveRecord::Base
-  attr_accessible :notes
+  attr_accessible :notes, :user
 
   belongs_to :client
-  belongs_to :courier
+  belongs_to :user
   has_many :drops
-
-  def client
-    Client.find self.client_id
-  end
 end

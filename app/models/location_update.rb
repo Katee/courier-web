@@ -1,5 +1,5 @@
 class LocationUpdate < ActiveRecord::Base
-  belongs_to :courier
+  belongs_to :user
   attr_accessible :at, :lat, :lng
 
   def summary

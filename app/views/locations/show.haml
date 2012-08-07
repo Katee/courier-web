@@ -1,0 +1,10 @@
+%h2= @location.name
+
+%address
+  = @location.address
+  %br
+  = [ @location.city, @location.state, @location.postal ].join(', ')
+
+= link_to 'Edit', edit_location_path(@location)
+\|
+= link_to 'Back', locations_path

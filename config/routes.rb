@@ -2,6 +2,7 @@ Courier::Application.routes.draw do
   resources :clients
   resources :jobs
   resources :location_update
+  resources :locations
 
   authenticated :user do
     root :to => 'home#index'

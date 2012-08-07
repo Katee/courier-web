@@ -1,0 +1,16 @@
+%h1 Locations
+%a{ :href => new_location_path }
+  %i.icon-plus
+  New Location
+
+%table.table.table-striped
+  %thead
+    %tr
+      %td Name
+      %td Address
+  %tbody
+    - @locations.each do |location|
+      %tr
+        %td= link_to location.name, location
+        %td= location.address
+

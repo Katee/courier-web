@@ -21,3 +21,4 @@ gem "therubyracer", :group => :assets, :platform => :ruby
 gem "inherited_resources"
 gem "simple_form"
 gem "country_select"
+gem "pry"

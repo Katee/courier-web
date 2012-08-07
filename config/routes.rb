@@ -3,6 +3,7 @@ Courier::Application.routes.draw do
   resources :jobs
   resources :location_update
   resources :locations
+  resources :drops
 
   authenticated :user do
     root :to => 'home#index'

@@ -1,0 +1,11 @@
+%h2 Drop
+
+Client: 
+= @drop.job.client.name
+
+%address
+  = @drop.location.address
+
+= link_to 'Edit', edit_drop_path(@drop)
+\|
+= link_to 'Back', drops_path

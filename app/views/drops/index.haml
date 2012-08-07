@@ -1,0 +1,16 @@
+%h1 Drops
+%a{ :href => new_drop_path }
+  %i.icon-plus
+  New Drop
+
+%table.table.table-striped
+  %thead
+    %tr
+      %td Client
+      %td Address
+  %tbody
+    - @drops.each do |drop|
+      %tr
+        %td= drop.job.client.name
+        %td= drop.location.address unless drop.location.nil?
+

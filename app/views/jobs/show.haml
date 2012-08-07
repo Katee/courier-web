@@ -1,4 +1,13 @@
-%p#notice= notice
+%h2 Job Details
+
+%table.table.table-striped
+  %thead
+    %tr
+      %td Drops
+  %tbody
+    - @job.drops.each do |drop|
+      %tr
+        %td= drop.location.address
 
 
 = link_to 'Edit', edit_job_path(@job)

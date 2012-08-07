@@ -1,7 +1,11 @@
-= simple_form_for(@job) do |f|
-  = f.error_notification
+= simple_form_for(@job, :html => { :class => "form-horizontal" } ) do |f|
 
   .form-inputs
+    = f.association :client
+    = f.association :user, :label => "Courier"
+    = f.input :notes, :as => :text
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, :class => "btn btn-primary"
+    or
+    = link_to "Cancel", :back

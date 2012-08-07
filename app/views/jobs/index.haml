@@ -6,13 +6,19 @@
 %table.table.table-striped
   %thead
     %tr
+      %td Courier
       %td Client
+      %td Pickup
+      %td Dropoff
   %tbody
     - @jobs.each do |job|
       %tr
-        %td= job.client.name
         %td
-          = link_to 'Show', job
-          = link_to 'Edit', edit_job_path(job)
-          = link_to 'Destroy', job, :confirm => 'Are you sure?', :method => :delete
+          - if job.user.nil?
+            Unassigned
+          - else
+            = job.user.name
+        %td= link_to job.client.name, job
+        %td= job.drops.first.location.address unless job.drops.first.nil?
+        %td= job.drops.last.location.address unless job.drops.last.nil?
 

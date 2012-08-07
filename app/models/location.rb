@@ -1,7 +1,7 @@
 class Location < ActiveRecord::Base
   attr_accessible :address, :city, :country, :name, :postal, :state
 
-  def initialize(attributes=nil)
+  def initialize(attributes={})
     super({
       :city => "Toronto",
       :state => "Ontario",
@@ -10,5 +10,4 @@ class Location < ActiveRecord::Base
   end
 
   has_and_belongs_to_many :jobs
-  has_and_belongs_to_many :clients
 end

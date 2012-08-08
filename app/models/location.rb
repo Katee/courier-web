@@ -1,5 +1,6 @@
 class Location < ActiveRecord::Base
-  attr_accessible :address, :city, :country, :name, :postal, :state
+  attr_accessible :address, :city, :country, :name, :postal, :state, :lat, :lng
+  has_many :drops
 
   def initialize(attributes={})
     super({
@@ -8,6 +9,4 @@ class Location < ActiveRecord::Base
       :country => "Canada"
     }.merge(attributes))
   end
-
-  has_and_belongs_to_many :jobs
 end

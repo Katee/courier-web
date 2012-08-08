@@ -1,6 +1,16 @@
-%h1 Edit Location
+- content_for :head do
+  = javascript_include_tag "locations-edit"
 
-= render 'form'
+%h1
+  Edit
+  = @location.name
+
+.row-fluid
+  .span6
+    = render 'form'
+
+  #map{ :"data-lat" => @location.lat, :"data-lng" => @location.lng }
+
 
 = link_to 'Show', @location
 \|

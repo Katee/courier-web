@@ -1,10 +1,18 @@
-%h2= @location.name
+- content_for :head do
+  = javascript_include_tag "locations-show"
 
-%address
-  = @location.address
-  %br
-  = [ @location.city, @location.state, @location.postal ].join(', ')
+.row-fluid
+  .span6
+    %h2= @location.name
 
-= link_to 'Edit', edit_location_path(@location)
-\|
-= link_to 'Back', locations_path
+    = link_to 'Edit', edit_location_path(@location)
+    \|
+    = link_to 'Back', locations_path
+
+    %address
+      = @location.address
+      %br
+      = [ @location.city, @location.state, @location.postal ].join(', ')
+
+  #map.span6{ :"data-lat" => @location.lat, :"data-lng" => @location.lng }
+

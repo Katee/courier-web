@@ -1,29 +1,27 @@
-%p#notice= notice
+%h2
+  = @client.name
+  %small= link_to 'Edit', edit_client_path(@client)
 
-%h2= @client.name
+%h3
+  Recent Jobs
+  %small
+    %a{ :href => new_job_path }
+      Add Job
 
-%h3 Recent Jobs
-%a{ :href => new_job_path }
-  %i.icon-plus
-  New Job
-
-%table.table.table-striped
-  %thead
-    %tr
-      %td Courier
-  %tbody
-    - @client.jobs.each do |job|
+- if @client.jobs.count > 0
+  %table.table.table-striped
+    %thead
       %tr
-        %td
-          - if job.user.nil?
-            Unassigned
-          - else
-            = job.user.name
-        %td
-          = link_to 'Edit', edit_job_path(job)
-          = link_to 'Delete', job, :confirm => 'Are you sure?', :method => :delete
+        %td Courier
+    %tbody
+      - @client.jobs.each do |job|
+        %tr
+          %td
+            - if job.user.nil?
+              Unassigned
+            - else
+              = job.user.name
+          %td
+            = link_to 'Edit', edit_job_path(job)
+            = link_to 'Delete', job, :confirm => 'Are you sure?', :method => :delete
 
-
-= link_to 'Edit', edit_client_path(@client)
-\|
-= link_to 'Back', client_path

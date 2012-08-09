@@ -1,14 +1,16 @@
-%h1 Clients
-%a{ :href => new_client_path }
-  %i.icon-plus
-  New Client
+%h1
+  Clients
+  %small= link_to "New Client", new_client_path
 
-%table.table.table-striped
-  %thead
-    %tr
-      %th
-  %tbody
-    - @clients.each do |client|
+- if @clients.count > 0
+  %table.table.table-striped
+    %thead
       %tr
-        %td= link_to client.name, client
-
+        %th
+    %tbody
+      - @clients.each do |client|
+        %tr
+          %td= link_to client.name, client
+- else
+  .alert
+    %p No Clients

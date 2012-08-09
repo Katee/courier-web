@@ -10,4 +10,16 @@ class LocationUpdateController < ApplicationController
       end
     end
   end
+
+  #FIXME do user auth
+  def create
+    respond_to do |format|
+      format.json do
+        location = LocationUpdate.create :lat => params[:lat], :lng => params[:lng], :courier_id => 1
+        location.save
+        render json: "success"
+      end
+    end
+  end
 end
+

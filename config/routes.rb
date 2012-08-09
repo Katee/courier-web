@@ -8,6 +8,9 @@ Courier::Application.routes.draw do
   authenticated :user do
     root :to => 'home#index'
   end
+
+  get "/map" => "home#map"
+
   root :to => "home#index"
   devise_for :users
   resources :users, :only => [:show, :index]

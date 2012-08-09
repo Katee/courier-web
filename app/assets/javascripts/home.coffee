@@ -1,28 +1,27 @@
 # Show a Google Map and asyn load some polylines
 
+$(window).on('resize', () ->
+  $("#map").height($(window).height())
+)
+
 $(document).ready(() ->
-  mapOptions = {
+  $(window).trigger('resize')
+
+  map = new google.maps.Map document.getElementById("map"), {
     center: new google.maps.LatLng(43.653226,-79.383184)
     zoom: 14
     mapTypeId: google.maps.MapTypeId.ROADMAP
+    disableDefaultUI: true
   }
-  map = new google.maps.Map(document.getElementById("map"), mapOptions)
 
   $.ajax({
-    url: '/location_update.json'
+    url: '/locations.json'
     success: (data) ->
-      colors = [
-        "#ff0000"
-        "#00ff00"
-        "#0000ff"
-      ]
-
-      $.each data, (key, list) ->
-        new google.maps.Polyline(
-          path: (new google.maps.LatLng(point.lat, point.lng) for point in list)
-          strokeColor: colors.pop()
-          strokeOpacity: 1.0
-          strokeWeight: 2
-        ).setMap(map)
+      $(data).each (v, point) ->
+        marker = new google.maps.Marker(
+          position: new google.maps.LatLng(point.lat, point.lng)
+          map: map
+          title: point.name
+        )
   })
 )

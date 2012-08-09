@@ -1,14 +1,27 @@
 %h2 Job Details
 
+%p
+  Client:
+  = link_to @job.client.name, @job.client
+
+%p
+  Courier:
+  = link_to @job.user.name, @job.user
+
+%h3 Drops
+
 %table.table.table-striped
   %thead
     %tr
-      %td Drops
+      %td Location
+      %td Completed at
+      %td Authorized by
   %tbody
     - @job.drops.each do |drop|
       %tr
         %td= drop.location.address
-
+        %td= drop.authorized_on
+        %td= drop.authorized_by
 
 = link_to 'Edit', edit_job_path(@job)
 \|

@@ -1,11 +1,22 @@
-= simple_form_for(@job, :html => { :class => "form-horizontal" } ) do |f|
+= simple_form_for @job do |f|
+  .row-fluid
+    .span6
+      .form-horizontal
+        .form-inputs
+          = f.association :client
+          = f.association :user, :label => "Courier"
+          = f.input :notes, :as => :text
 
-  .form-inputs
-    = f.association :client
-    = f.association :user, :label => "Courier"
-    = f.input :notes, :as => :text
+    .span6
+      .form-inline
+        .well
+          %legend Drops
+          = f.simple_fields_for @job.drops, :as => "drops" do |child_form|
+            = child_form.association :location
 
+  .clearfix
   .form-actions
     = f.button :submit, :class => "btn btn-primary"
     or
     = link_to "Cancel", :back
+

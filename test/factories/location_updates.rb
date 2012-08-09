@@ -9,7 +9,7 @@ FactoryGirl.define do
     lat {
       location = LocationUpdate.where(:courier_id => courier_id).last
       if location.nil?
-        lat = 43.653227
+        lat = 43.653227 + range(-0.02, 0.02)
       else
         lat = location.lat
       end
@@ -18,7 +18,7 @@ FactoryGirl.define do
     lng {
       location = LocationUpdate.where(:courier_id => courier_id).last
       if location.nil?
-        lng = -79.383184
+        lng = -79.383184 + range(-0.02, 0.02)
       else
         lng = location.lng
       end

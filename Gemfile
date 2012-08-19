@@ -5,6 +5,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem "therubyracer", :group => :assets, :platform => :ruby
 end
 gem 'jquery-rails'
 gem "bootstrap-sass"
@@ -17,7 +18,6 @@ gem "faker"
 gem "devise"
 gem "cancan"
 gem "rolify"
-gem "therubyracer", :group => :assets, :platform => :ruby
 gem "inherited_resources"
 gem "simple_form"
 gem "country_select"

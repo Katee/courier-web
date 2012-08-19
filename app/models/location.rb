@@ -16,7 +16,7 @@ class Location < ActiveRecord::Base
   def geocode
     return if address.nil?
     return if not lat.nil? and not lng.nil?
-    url = "http://geocoder.ca/?locate=#{CGI.escape [address, postal, state, city, country].join(',')}&geoit=xml&jsonp=1&callback=?"
+    url = "http://geocoder.ca/?locate=#{CGI.escape [address, postal, state, city, country].join(',')}&geoit=xml&jsonp=1&auth=250811195292556406039x1903&callback=?"
     # get the response and cut off the jsonp
     response = Curl.get(url).body_str.from(2).to(-3)
     json = JSON.parse response

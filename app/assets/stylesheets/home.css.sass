@@ -1,13 +1,11 @@
 body.home
   padding-top: 0
 
-  .navbar-inner, .overmap-content
-    background: rgba(0, 0, 0, .9)
-
   #map
     background: #eee
 
   .overmap-content
+    pointer-events: none
     border-radius: 3px
     width: 42em
     position: absolute
@@ -28,3 +26,8 @@ body.home
       font-size: 3em
       line-height: 1.4
       margin-top: .8em
+
+  .navbar-inner, .overmap-content
+    background: rgba(0, 0, 0, .75) !important
+    text-shadow: 0 2px 1px black
+

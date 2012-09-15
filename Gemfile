@@ -7,6 +7,12 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem "therubyracer", :group => :assets, :platform => :ruby
 end
+
+group :development do
+  gem "pry"
+  gem "awesome_print"
+end
+
 gem 'jquery-rails'
 gem "bootstrap-sass"
 gem "font-awesome-rails"
@@ -21,6 +27,5 @@ gem "rolify"
 gem "inherited_resources"
 gem "simple_form"
 gem "country_select"
-gem "pry"
 gem "curb"
 gem "leaflet-rails"

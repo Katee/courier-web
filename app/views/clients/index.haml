@@ -1,6 +1,9 @@
-%h1
+%h1.pull-left
   Clients
   %small= link_to "New Client", new_client_path
+.pull-right
+  = render "layouts/searchform"
+.clearfix
 
 - if @clients.count > 0
   %table.table.table-striped

@@ -4,4 +4,6 @@ class Client < ActiveRecord::Base
   has_many :jobs
 
   validates :name, :presence => true
+  
+  acts_as_ferret :fields => [ :name ]
 end

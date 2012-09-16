@@ -42,8 +42,9 @@ $(document).ready(() ->
       $(data).each (v, point) ->
         marker = new google.maps.Marker(
           position: new google.maps.LatLng(point.lat, point.lng)
-          title: point.name
+          title: point.name + ", " + point.address
           map: map
+          icon: '/circle.png'
         )
   })
 )

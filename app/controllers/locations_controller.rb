@@ -7,7 +7,7 @@ class LocationsController < InheritedResources::Base
         render json: @locations
       end
       format.html do
-        if params[:q].nil?
+        if params[:q].blank?
           @locations = Location.page(params[:page])
         else
           @locations = Location.find_with_ferret(params[:q], :page => params[:page], :per_page => WillPaginate.per_page)

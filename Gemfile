@@ -10,7 +10,9 @@ end
 
 group :development do
   gem "pry"
+  gem "pry-nav"
   gem "awesome_print"
+  gem "nokogiri"
 end
 
 gem 'jquery-rails'
@@ -29,3 +31,5 @@ gem "simple_form"
 gem "country_select"
 gem "curb"
 gem "leaflet-rails"
+gem "will_paginate"
+gem "will_paginate-bootstrap"

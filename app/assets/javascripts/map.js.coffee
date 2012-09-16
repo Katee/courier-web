@@ -35,6 +35,8 @@ $(document).ready(() ->
         )
   })
 
+  infowindow = new google.maps.InfoWindow
+
   # Show drop locations
   $.ajax({
     url: '/locations.json'
@@ -42,9 +44,14 @@ $(document).ready(() ->
       $(data).each (v, point) ->
         marker = new google.maps.Marker(
           position: new google.maps.LatLng(point.lat, point.lng)
-          title: point.name + ", " + point.address
+          title: "#{point.name}, #{point.address}"
           map: map
           icon: '/circle.png'
+        )
+        google.maps.event.addListener(marker, 'click', () ->
+          infowindow.close()
+          infowindow.setContent("<a href=\"/locations/#{point.id}\">#{point.name}</a><br />#{point.address}")
+          infowindow.open(map,marker)
         )
   })
 )

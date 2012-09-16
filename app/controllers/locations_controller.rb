@@ -3,7 +3,7 @@ class LocationsController < InheritedResources::Base
     super do |format|
       format.json do
         @locations = Location.find(:all)
-        @locations = @locations.collect { |i| {:lat => i.lat, :lng => i.lng, :name => i.name, :address => i.address} }
+        @locations = @locations.collect { |i| {:lat => i.lat, :lng => i.lng, :name => i.name, :address => i.address, :id => i.id} }
         render json: @locations
       end
       format.html do

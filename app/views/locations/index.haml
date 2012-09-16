@@ -1,6 +1,11 @@
-%h1
+%h1.pull-left
   Locations
   %small= link_to "Add Location", new_location_path
+%form.form-search.pull-right
+  .input-append
+    %input.span2.seach-query{:type => :text, :name => :q, :value => params[:q]}
+    %button.btn{:type => :submit} Find
+.clearfix
 
 %table.table.table-striped
   %thead

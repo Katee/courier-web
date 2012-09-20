@@ -16,7 +16,7 @@ group :development do
 end
 
 gem "jquery-rails"
-gem "bootstrap-sass"
+gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails', :git => 'git://github.com/anjlab/bootstrap-rails.git'
 gem "font-awesome-rails"
 gem "unicorn", :group => [:development, :test]
 gem "haml"
@@ -34,5 +34,4 @@ gem "leaflet-rails"
 gem "will_paginate"
 gem "will_paginate-bootstrap"
 gem "ferret"
-gem 'acts_as_ferret', '>= 0.5'
-  
+gem "acts_as_ferret", ">= 0.5"

@@ -16,7 +16,7 @@ group :development do
 end
 
 gem "jquery-rails"
-gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails', :git => 'git://github.com/anjlab/bootstrap-rails.git'
+gem "anjlab-bootstrap-rails", :require => "bootstrap-rails", :git => "git://github.com/anjlab/bootstrap-rails.git"
 gem "font-awesome-rails"
 gem "unicorn", :group => [:development, :test]
 gem "haml"
@@ -32,3 +32,6 @@ gem "country_select"
 gem "curb"
 gem "leaflet-rails"
 gem "kaminari"
+
+gem "activeadmin"
+gem "meta_search", ">= 1.1.0.pre"

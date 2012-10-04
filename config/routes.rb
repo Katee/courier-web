@@ -1,4 +1,6 @@
 Courier::Application.routes.draw do
+  ActiveAdmin.routes(self)
+
   resources :clients
   resources :jobs
   resources :location_update

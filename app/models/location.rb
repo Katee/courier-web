@@ -4,8 +4,6 @@ class Location < ActiveRecord::Base
 
   before_create :geocode
 
-  acts_as_ferret :fields => [ :name, :address ]
-
   def initialize(attributes={})
     super({
       :city => "Toronto",

@@ -1,21 +1,22 @@
-%h1.pull-left
-  Clients
-  %small= link_to "New Client", new_client_path
-.pull-right
-  = render "layouts/searchform"
-.clearfix
+.navbar.navbar-static-top
+  .navbar-inner
+    .container
+      .brand Clients
+      = link_to "New Client", new_client_path, :class => "btn"
+      = render "layouts/searchform"
 
-- if @clients.count > 0
-  %table.table.table-striped
-    %thead
-      %tr
-        %th
-    %tbody
-      - @clients.each do |client|
+.container
+  - if @clients.count > 0
+    %table.table.table-striped
+      %thead
         %tr
-          %td= link_to client.name, client
-- else
-  .alert
-    %p No Clients
+          %th Name
+      %tbody
+        - @clients.each do |client|
+          %tr
+            %td= link_to client.name, client
+  - else
+    .alert
+      %p No Clients
 
-= paginate @clients
+  = paginate @clients

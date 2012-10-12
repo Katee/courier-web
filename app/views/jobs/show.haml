@@ -1,28 +1,58 @@
-%h2 Job Details
+- content_for :head do
+  = javascript_include_tag "jobs-show"
 
-%p
-  Client:
-  = link_to @job.client.name, @job.client
+#map{:style => "height: 300px;"}
+  Loading map
 
-%p
-  Courier:
-  = link_to @job.user.name, @job.user
+.navbar.navbar-static-top.navbar-transparent
+  .navbar-inner
+    .container
+      .brand Delivery Details
+      .btn-group.pull-right
+        = link_to 'Edit', edit_job_path(@job), :class => "btn" if current_user.has_role? :admin
+        = link_to 'Cancel Delivery', cancel_job_path(@job), :class => "btn btn-danger" if @job.status == :"awaiting pickup"
 
-%h3 Drops
+.container
+  .row
+    .span2
+      %table.table
+        %thead
+          %tr
+            %th Status
+        %tbody
+          %tr
+            %td
+              = @job.status.to_s.capitalize
+          - if current_user.has_role? :admin
+            %tr
+              %th Courier
+            %tr
+              %td
+                = link_to @job.user.name, @job.user
+            %tr
+              %th Client
+            %tr
+              %td
+                = link_to @job.client.name, @job.client
 
-%table.table.table-striped
-  %thead
-    %tr
-      %td Location
-      %td Completed at
-      %td Authorized by
-  %tbody
-    - @job.drops.each do |drop|
-      %tr
-        %td= drop.location.address
-        %td= drop.authorized_on
-        %td= drop.authorized_by
+    .span10
+      %table.table.table-striped
+        %thead
+          %tr
+            %td
+            %th Location
+            %th Completed at
+            %th Authorized by
+        %tbody
+          - char = 65
+          - @job.drops.each do |drop|
+            - #TODO show when a drop has been completed
+            - #TODO use helpers for icons
+            %tr.drop-row{:"data-lat" => drop.location.lat, :"data-lng" => drop.location.lng}
+              %td.icon
+                %img{:src => "https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=#{char.chr}|000000|ffffff" }
+              %td= drop.location.address
+              %td= drop.authorized_on || "&mdash;".html_safe
+              %td= drop.authorized_by || "&mdash;".html_safe
+            - char += 1
 
-= link_to 'Edit', edit_job_path(@job)
-\|
-= link_to 'Back', jobs_path

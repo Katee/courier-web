@@ -24,6 +24,7 @@ $(document).ready(() ->
           position: new google.maps.LatLng(point.lat, point.lng)
           map: map
           title: point.name
+          icon: '/assets/circle.png'
         )
   })
 )

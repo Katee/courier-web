@@ -15,8 +15,9 @@ class Location < ActiveRecord::Base
   end
 
   def full_address
-    [address, postal, city, country, state].reject{|w|w.blank?}.join(',')
+    [address, postal, city, country, state].reject(&:blank?).join(',')
   end
+
   # Geocode an address with geocoder.ca, costs 1/4 a cent per successful request
   def geocode
     return if address.index(/[1-9]/).nil?
@@ -28,5 +29,9 @@ class Location < ActiveRecord::Base
     json = JSON.parse response
     self.lng = json["longt"]
     self.lat = json["latt"]
+  end
+
+  def summary
+    {:lat => self.lat, :lng => self.lng, :name => self.name, :address => self.address, :id => self.id, :open_drop_count => Drop.where(:location_id => self.id).count}
   end
 end

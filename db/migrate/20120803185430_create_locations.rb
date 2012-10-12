@@ -7,6 +7,7 @@ class CreateLocations < ActiveRecord::Migration
       t.string :city
       t.string :state
       t.string :country
+      t.references :client
 
       t.timestamps
     end

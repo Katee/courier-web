@@ -7,7 +7,7 @@ class Drop < ActiveRecord::Base
 
   validates :location_id, :presence => true
 
-  before_update :check_authorized_on
+  before_update :update_authorized_on
 
   def to_s
     "Drop at #{location.name}"
@@ -15,7 +15,7 @@ class Drop < ActiveRecord::Base
 
   private
   # update authorized_on when authorized_by is updated
-  def check_authorized_on
+  def update_authorized_on
     if @changed_attributes.include? "authorized_by"
       self.authorized_on = Time.now
     end

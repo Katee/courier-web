@@ -1,6 +1,8 @@
 class Location < ActiveRecord::Base
-  attr_accessible :address, :city, :country, :name, :postal, :state, :lat, :lng
   has_many :drops
+  belongs_to :client
+
+  attr_accessible :address, :city, :country, :name, :postal, :state, :lat, :lng, :client_id
 
   before_create :geocode
 

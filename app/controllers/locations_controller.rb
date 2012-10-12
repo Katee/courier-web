@@ -1,9 +1,14 @@
 class LocationsController < InheritedResources::Base
+  layout :layout
+
+  def layout
+    (["index", "search"].include? action_name) ? "nocontainer" : "application"
+  end
+
   def index
     super do |format|
       format.json do
-        @locations = Location.find(:all)
-        @locations = @locations.collect { |i| {:lat => i.lat, :lng => i.lng, :name => i.name, :address => i.address, :id => i.id} }
+        @locations = Location.find(:all).collect { |l| l.summary }
         render json: @locations
       end
       format.html do
@@ -11,4 +16,6 @@ class LocationsController < InheritedResources::Base
       end
     end
   end
+
+  alias :search :index
 end

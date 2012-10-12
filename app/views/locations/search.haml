@@ -1,0 +1,25 @@
+.navbar.navbar-static-top
+  .navbar-inner
+    .container
+      .brand Locations
+      = render "layouts/searchform"
+      .btn-group.pull-left
+        = link_to "Add Location", new_location_path, :class => "btn"
+
+.container
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Name
+        %th Address
+        - if current_user.has_role? :admin
+          %th= Client
+    %tbody
+      - @locations.each do |location|
+        %tr
+          %td= link_to location.name, location
+          %td= location.address
+          - if current_user.has_role? :admin
+            %td= location.client if current_user.has_role? :admin
+
+  = paginate @locations

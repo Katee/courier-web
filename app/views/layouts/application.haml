@@ -10,9 +10,10 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
     = yield(:head)
-  %body{ :class => [controller_name, "#{controller_name}-#{action_name}"] }
+  %body{ :class => [controller_name, "#{controller_name}-#{action_name}", @body_classes] }
     = render 'layouts/header'
     #main{:role => "main"}
       .container
-        = render 'layouts/messages'
+        .flash
+          = render 'layouts/messages'
         = yield

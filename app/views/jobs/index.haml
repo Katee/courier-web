@@ -1,23 +1,31 @@
-%h1
-  Jobs
-  %small= link_to "Add Job", new_job_path
+.navbar.navbar-static-top
+  .navbar-inner
+    .container
+      .brand Jobs
+      = link_to "Add Job", new_job_path, :class => "btn"
 
-%table.table.table-striped
-  %thead
-    %tr
-      %td Courier
-      %td Client
-      %td Pickup
-      %td Dropoff
-  %tbody
-    - @jobs.each do |job|
+.container
+  %table.table.table-striped
+    %thead
       %tr
-        %td
-          - if job.user.nil?
-            Unassigned
-          - else
-            = job.user.name
-        %td= link_to job.client.name, job
-        %td= job.drops.first.location.address unless job.drops.first.nil?
-        %td= job.drops.last.location.address unless job.drops.last.nil?
-
+        %th Status
+        %th Courier
+        %th Client
+        %th Pickup
+        %th Dropoff
+    %tbody
+      - unless @jobs.nil?
+        - @jobs.each do |job|
+          %tr
+            %td= link_to job.status.to_s.capitalize, job
+            %td
+              - if job.user.nil?
+                .form-inline
+                  = simple_form_for job, :defaults => { :label_html => { :class => 'hide' }, :class => "form-inline" } do |f|
+                    = f.association :user, :label => nil
+                    = f.button :submit, :class => "btn"
+              - else
+                = job.user.name
+            %td= job.client.name unless job.client.nil?
+            %td= job.drops.first.location.address unless job.drops.first.nil?
+            %td= job.drops.last.location.address unless job.drops.last.nil?

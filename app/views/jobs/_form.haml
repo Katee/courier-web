@@ -1,22 +1,22 @@
 = simple_form_for @job do |f|
   .row-fluid
-    .span6
-      .form-horizontal
-        .form-inputs
-          = f.association :client
-          = f.association :user, :label => "Courier"
-          = f.input :notes, :as => :text
+    .form-horizontal
+      .form-inputs
+        = f.association :client if current_user.has_role? :admin
+        = f.association :user, :label => "Courier" if current_user.has_role? :admin
+        - labels = ["Pickup Location", "Dropoff Location"]
+        .controls
+          .help-block
+            Location not listed?
+            = link_to "Add it", new_location_path
+        - i = 0
+        = f.simple_fields_for :drops do |drop_form|
+          = drop_form.association :location, :label => labels[i]
+          - i += 1
+        = f.input :notes, :as => :text
 
-    .span6
-      .form-inline
-        .well
-          %legend Drops
-          = f.simple_fields_for @job.drops, :as => "drops" do |child_form|
-            = child_form.association :location
-
-  .clearfix
-  .form-actions
-    = f.button :submit, :class => "btn btn-primary"
-    or
-    = link_to "Cancel", :back
+      .form-actions
+        = f.button :submit, :class => "btn btn-primary"
+        or
+        = link_to "Cancel", :back
 

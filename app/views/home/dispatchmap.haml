@@ -1,0 +1,12 @@
+- content_for :head do
+  = javascript_include_tag "map"
+
+#sidebar{:style => "width:300px;vertical-align:top;border-right:1px solid #aaa;overflow:auto;"}
+  %form
+    %label.checkbox
+      %input{:type => :checkbox, :id => :all_locations}
+      All Locations
+    %label.checkbox
+      %input{:type => :checkbox}
+      Open jobs
+#map

@@ -1,16 +1,18 @@
 class HomeController < ApplicationController
-  layout "map"
+  layout "nocontainer"
 
   def index
     respond_to do |format|
       format.html do
-        if not current_user.nil?
-          render action: "map"
+        @body_classes = "map"
+        if not current_user.nil? and current_user.has_role? :admin
+          render action: "dispatchmap"
+        elsif not current_user.nil?
+          @body_classes = ""
+          @jobs = Job.find(:all)
+          render action: "dashboard"
         end
       end
     end
-  end
-
-  def map
   end
 end

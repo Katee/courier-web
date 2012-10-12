@@ -10,7 +10,7 @@ class Drop < ActiveRecord::Base
   before_update :update_authorized_on
 
   def to_s
-    "Drop at #{location.name}"
+    "Drop at #{location.name}" unless location.nil? or location.name.nil?
   end
 
   private

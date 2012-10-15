@@ -10,7 +10,16 @@ class JobsController < InheritedResources::Base
       format.json do
         locations = {}
         render json: {
-          :jobs => Job.find(:all, :include => [:drops, {drops: :location}]).collect(&:summary),
+          :jobs => Job.find(:all, :include => [:drops, {drops: :location}]).collect{ |job|
+            {
+              :id => job.id,
+              :courier_id => job.user_id,
+              :drops => job.drops.collect do |drop|
+                locations[drop.location_id] = drop.location.summary
+                drop.location_id
+              end
+            }
+          },
           :locations => locations
         }
       end

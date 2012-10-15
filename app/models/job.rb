@@ -22,17 +22,6 @@ class Job < ActiveRecord::Base
     end
     return :processing
   end
-  
-  def summary
-    {
-      :id => self.id,
-      :courier_id => self.user_id,
-      :drops => self.drops.collect do |drop|
-        locations[drop.location_id] = drop.location.summary
-        drop.location_id
-      end
-    }
-  end
 
   def courier_summary
     {

@@ -11,4 +11,15 @@ class User < ActiveRecord::Base
 
   has_many :jobs
   belongs_to :client
+
+  after_create :welcome_email
+
+  def login_url
+    new_user_session_path(:email => self.email)
+  end
+
+  private
+    def welcome_email
+      UserMailer.welcome_email(self).deliver
+    end
 end

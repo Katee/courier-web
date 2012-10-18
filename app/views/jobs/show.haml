@@ -1,9 +1,6 @@
 - content_for :head do
   = javascript_include_tag "jobs-show"
 
-#map{:style => "height: 300px;"}
-  %span.loading Loading map
-
 .navbar.navbar-static-top.navbar-transparent
   .navbar-inner
     .container
@@ -14,35 +11,39 @@
 
 .container
   .row
-    .span2
+    .span3
+      #map
+        %span.loading Loading map
+
+    .span9
       %table.table
         %thead
           %tr
-            %th Status
+            %td.span1
+            - if current_user.has_role? :admin
+              %th.span5 Status
+              %th.span3 Courier
+              %th.span3 Client
+            - else
+              %th.span11 Status
         %tbody
           %tr
+            %th
             %td
               = @job.status.to_s.capitalize
-          - if current_user.has_role? :admin
-            %tr
-              %th Courier
-            %tr
+            - if current_user.has_role? :admin
               %td
-                = link_to @job.user.name, @job.user
-            %tr
-              %th Client
-            %tr
+                = @job.user.nil? ? "&mdash;".html_safe : "#{link_to @job.user.name, @job.user}".html_safe
               %td
-                = link_to @job.client.name, @job.client
+                = @job.client.nil? ? "&mdash;".html_safe : "#{link_to @job.client.name, @job.client}".html_safe
 
-    .span10
       %table.table.table-striped
         %thead
           %tr
-            %td
-            %th Location
-            %th Completed at
-            %th Authorized by
+            %td.span1
+            %th.span5 Location
+            %th.span3 Completed at
+            %th.span3 Authorized by
         %tbody
           - char = 65
           - @job.drops.each do |drop|
@@ -55,4 +56,3 @@
               %td= drop.authorized_on || "&mdash;".html_safe
               %td= drop.authorized_by || "&mdash;".html_safe
             - char += 1
-

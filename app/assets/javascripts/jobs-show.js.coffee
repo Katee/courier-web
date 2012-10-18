@@ -5,6 +5,7 @@ $(document).ready () ->
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 14
     mapTypeId: google.maps.MapTypeId.ROADMAP
+    disableDefaultUI: true
   })
 
   $('.drop-row').each (i) ->

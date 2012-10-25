@@ -1,9 +1,8 @@
 # Show a Google Map and asyn load some polylines
 
 $(window).on('resize', () ->
-  $("#map").height($(window).height())
   # Center the overmap content vertically
-  $(".overmap-content").css({top: $('.navbar-fixed-top').outerHeight() + (($(window).height() - $('.navbar-fixed-top').outerHeight()) / 2), marginTop: -($('.overmap-content').outerHeight() / 2)})
+  $(".overmap-content").css({top: $('.navbar-fixed-top').outerHeight() + (($('#map').height() - $('.navbar-fixed-top').outerHeight()) / 2), marginTop: -($('.overmap-content').outerHeight() / 2)})
 )
 
 $(document).ready(() ->

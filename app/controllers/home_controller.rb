@@ -15,4 +15,7 @@ class HomeController < ApplicationController
       end
     end
   end
+  
+  def members
+  end
 end

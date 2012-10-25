@@ -6,6 +6,8 @@ class Location < ActiveRecord::Base
 
   before_create :geocode
 
+  validates_presence_of :address
+
   def initialize(attributes={})
     super({
       :city => "Toronto",
@@ -20,10 +22,11 @@ class Location < ActiveRecord::Base
 
   # Geocode an address with geocoder.ca, costs 1/4 a cent per successful request
   def geocode
+    # address must note be blank start with a number
     return if address.index(/[1-9]/).nil?
-    return if full_address.nil?
+    return if full_address.blank?
     return if not lat.nil? and not lng.nil?
-    url = "http://geocoder.ca/?locate=#{CGI.escape self.full_address}&geoit=xml&jsonp=1&auth=250811195292556406039x1903&callback=?"
+    url = "http://geocoder.ca/?locate=#{CGI.escape self.full_address}&geoit=xml&jsonp=1&auth=#{GEOCODER_CA_KEY}&callback=?"
     # get the response and cut off the jsonp
     response = Curl.get(url).body_str.from(2).to(-3)
     json = JSON.parse response

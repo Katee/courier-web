@@ -2,6 +2,7 @@ Courier::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   get "/" => "home#index"
+  get "/members" => "home#members"
 
   resources :clients
   resources :jobs do

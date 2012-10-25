@@ -1,5 +1,5 @@
 - content_for :head do
-  = javascript_include_tag "locations-edit"
+  = javascript_include_tag "locations/edit"
 
 %h1
   Edit
@@ -10,8 +10,3 @@
     = render 'form'
 
   #map{ :"data-lat" => @location.lat, :"data-lng" => @location.lng }
-
-
-= link_to 'Show', @location
-\|
-= link_to 'Back', locations_path

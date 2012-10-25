@@ -1,28 +1,33 @@
 .container
-  %h1 Our Members
   .row
     .span4
-      %img.pull-left{:src => "http://placehold.it/100x125"}
-      %h2 Name
-      %p= Faker::Lorem.paragraphs(1).join('')
-    .span4
-      %img.pull-left{:src => "http://placehold.it/100x125"}
-      %h2 Name
-      %p= Faker::Lorem.paragraphs(1).join('')
-    .span4
-      %img.pull-left{:src => "http://placehold.it/100x125"}
-      %h2 Name
-      %p= Faker::Lorem.paragraphs(1).join('')
-  .row
-    .span4
-      %img.pull-left{:src => "http://placehold.it/100x125"}
-      %h2 Name
-      %p= Faker::Lorem.paragraphs(1).join('')
-    .span4
-      %img.pull-left{:src => "http://placehold.it/100x125"}
-      %h2 Name
-      %p= Faker::Lorem.paragraphs(1).join('')
-    .span4
-      %img.pull-left{:src => "http://placehold.it/100x125"}
-      %h2 Name
-      %p= Faker::Lorem.paragraphs(1).join('')
+      %h1 Our Members
+      %p Our mission is to set a new professional standard for same day delivery service, provide sustainable working conditions for our members, and leverage the full potential of the bicycle as a solution to the challenges of the modern city.
+    .span8
+      .row-fluid.member-row
+        .span6
+          %img.pull-left{:src => "http://placehold.it/100x125"}
+          %h2= Faker::Name.name
+          %p= Faker::Lorem.paragraphs(1).join('')
+        .span6
+          %img.pull-left{:src => "http://placehold.it/100x125"}
+          %h2= Faker::Name.name
+          %p= Faker::Lorem.paragraphs(1).join('')
+      .row-fluid.member-row
+        .span6
+          %img.pull-left{:src => "http://placehold.it/100x125"}
+          %h2= Faker::Name.name
+          %p= Faker::Lorem.paragraphs(1).join('')
+        .span6
+          %img.pull-left{:src => "http://placehold.it/100x125"}
+          %h2= Faker::Name.name
+          %p= Faker::Lorem.paragraphs(1).join('')
+      .row-fluid.member-row
+        .span6
+          %img.pull-left{:src => "http://placehold.it/100x125"}
+          %h2= Faker::Name.name
+          %p= Faker::Lorem.paragraphs(1).join('')
+        .span6
+          %img.pull-left{:src => "http://placehold.it/100x125"}
+          %h2= Faker::Name.name
+          %p= Faker::Lorem.paragraphs(1).join('')

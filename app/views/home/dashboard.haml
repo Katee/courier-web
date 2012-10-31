@@ -1,13 +1,11 @@
-.navbar.navbar-static-top
+.navbar.navbar-static-top.navbar-transparent
   .navbar-inner
     .container
       .brand My Jobs
       = link_to "Add Job", new_job_path, :class => "btn"
 
 .container
-  %h2 Active Jobs
-
-  - unless @jobs.nil?
+  - unless @jobs.nil? || @jobs.empty?
     %table.table.table-striped
       %thead
         %tr
@@ -20,3 +18,5 @@
             %td= link_to job.status.to_s.capitalize, job unless job.client.nil?
             %td= job.drops.first.location.address unless job.drops.first.nil?
             %td= job.drops.last.location.address unless job.drops.last.nil?
+  - else
+    You have no active jobs. #{link_to "Add one?", new_job_path}

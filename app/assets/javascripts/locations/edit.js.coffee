@@ -13,6 +13,7 @@ $(document).ready(() ->
     position: point
     map: map
     draggable: true
+    icon: "https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=A|000000|ffffff"
   )
 
   google.maps.event.addListener marker, "drag", () ->

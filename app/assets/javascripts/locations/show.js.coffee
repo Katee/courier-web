@@ -12,5 +12,6 @@ $(document).ready(() ->
   marker = new google.maps.Marker(
     position: point
     map: map
+    icon: "https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=A|000000|ffffff"
   )
 )

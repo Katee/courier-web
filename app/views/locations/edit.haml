@@ -9,4 +9,6 @@
   .span6
     = render 'form'
 
-  #map{ :"data-lat" => @location.lat, :"data-lng" => @location.lng }
+  .span6
+    #map{ :"data-lat" => @location.lat, :"data-lng" => @location.lng }
+    %p.help-block Note: Drag the #{image_tag marker_icon(0), :alt => "marker"} above to make its position more accurate

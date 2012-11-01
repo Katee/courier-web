@@ -37,4 +37,8 @@ class Location < ActiveRecord::Base
   def summary
     {:lat => self.lat, :lng => self.lng, :name => self.name, :address => self.address, :id => self.id, :open_drop_count => Drop.where(:location_id => self.id).count}
   end
+  
+  def display_name
+    name || address
+  end
 end
